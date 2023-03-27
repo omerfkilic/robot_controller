@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
@@ -10,6 +12,7 @@ class ControllerPage extends StatefulWidget {
 
 class _ControllerPageState extends State<ControllerPage> {
   String text = 'Waiting Command';
+  int rotationAngleFactor = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,6 +91,12 @@ class _ControllerPageState extends State<ControllerPage> {
                 ),
               ),
             ),
+            Transform.rotate(
+              angle: pi * (rotationAngleFactor / 2),
+              child: Image.asset(
+                'assets/icons/SpiderIcon.png',
+              ),
+            ),
             Container(
               alignment: Alignment.bottomCenter,
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
@@ -102,11 +111,13 @@ class _ControllerPageState extends State<ControllerPage> {
                       iconData: Icons.keyboard_arrow_left_outlined,
                       onTapDownEvent: () async {
                         setState(() {
+                          rotationAngleFactor = 3;
                           text = 'Moving Left';
                         });
                       },
                       onTapUpEvent: () {
                         setState(() {
+                          rotationAngleFactor = 0;
                           text = 'Waiting Command';
                         });
                       },
@@ -116,11 +127,13 @@ class _ControllerPageState extends State<ControllerPage> {
                       iconData: Icons.keyboard_arrow_right_outlined,
                       onTapDownEvent: () {
                         setState(() {
+                          rotationAngleFactor = 1;
                           text = 'Moving Right';
                         });
                       },
                       onTapUpEvent: () {
                         setState(() {
+                          rotationAngleFactor = 0;
                           text = 'Waiting Command';
                         });
                       },
@@ -130,11 +143,13 @@ class _ControllerPageState extends State<ControllerPage> {
                       iconData: Icons.keyboard_arrow_up_outlined,
                       onTapDownEvent: () {
                         setState(() {
+                          rotationAngleFactor = 4;
                           text = 'Moving Forward';
                         });
                       },
                       onTapUpEvent: () {
                         setState(() {
+                          rotationAngleFactor = 0;
                           text = 'Waiting Command';
                         });
                       },
@@ -144,11 +159,13 @@ class _ControllerPageState extends State<ControllerPage> {
                       iconData: Icons.keyboard_arrow_down_outlined,
                       onTapDownEvent: () {
                         setState(() {
+                          rotationAngleFactor = 2;
                           text = 'Moving Backward';
                         });
                       },
                       onTapUpEvent: () {
                         setState(() {
+                          rotationAngleFactor = 0;
                           text = 'Waiting Command';
                         });
                       },
